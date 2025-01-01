@@ -11,4 +11,3 @@ int main() {
     int t = mean * 3 - median;
     cout<<-1 * 1000<<" "<<median<<" "<<1000+ t<<endl;
 }
-
