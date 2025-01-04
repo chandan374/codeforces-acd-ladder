@@ -8,26 +8,22 @@ int main() {
     int t;
     cin>>t;
     while(t--) {
-        int n, k;
-        cin>>n>>k;
-        vector<long long int> v(n);
-        for(int i=0; i<n; i++) {
-            cin>>v[i];
-        }
-        sort(v.begin(), v.end());
-        for(int i=1; i<n; i++) {
-            v[i] += v[i-1];
+        int n;
+        cin>>n;
+        string s;
+        cin>>s;
+        vector<int> v(26);
+        for(int i=0; i<s.size(); i++) {
+            v[s[i]-'a']++;
         }
 
-        long long int ma = 0; 
-        for(int i=0; i<=k; i++) {
-            int back_remove_index = n - 1 - (k -i);
-            long long int total = v[back_remove_index];
-            if (i) {
-                total -= v[i * 2 -1];
-            }
-            ma = max(ma, total);
+        sort(v.begin(), v.end(), greater<int>());
+        while(v[0] > 0) {
+            if (v[1]==0) break; 
+            v[0] --;
+            v[1] --;
+            sort(v.begin(), v.end(), greater<int>());
         }
-        cout<<ma<<endl;
+        cout<<v[0]<<endl;
     }
 }
